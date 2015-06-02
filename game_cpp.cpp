@@ -47,15 +47,14 @@ int main ( int argc, char* argv[] )
         if(reply.find("hold/") && reply.find("/hold"))
         {
              //test if there is a complete hold message 
-            if(flush_psb(reply))
-                flag = 1;
-            else if(high_card(reply))
+            // method
+            if(high_card(reply))
                 flag = 1;
         }
         if(reply.find("inquire") != string::npos)
         {  
             if(flag)
-            client_socket << "check\n";
+            client_socket << "all_in\n";
             else
             client_socket << "fold\n";
         }
